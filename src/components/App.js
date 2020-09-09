@@ -18,7 +18,7 @@ const items = [
   },
 ];
 
-const options = [
+const colorOptions = [
   {
     label: "The Color Red",
     value: "red",
@@ -34,7 +34,7 @@ const options = [
 ];
 
 const App = () => {
-  const [selected, setSelected] = useState(options[0]);
+  const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
 
   return (
     <div className="ui grid container" style={{ margin: "10px" }}>
@@ -56,10 +56,14 @@ const App = () => {
       </div>
       <Search />
       <Dropdown
-        selected={selected}
-        onSelectedChange={setSelected}
-        options={options}
+        selected={selectedColor}
+        onSelectedChange={setSelectedColor}
+        options={colorOptions}
+        placeHolder="Select a color"
       />
+      <h3 className="ui header" style={{ color: `${selectedColor.value}` }}>
+        Hello world
+      </h3>
     </div>
   );
 };
