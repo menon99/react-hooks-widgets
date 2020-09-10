@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import unescape from "unescape";
+import SearchBar from "./SearchBar";
 
 const WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php";
 const CATEGORY = "category",
@@ -89,26 +90,19 @@ const Search = () => {
   });
 
   const content = (
-    <React.Fragment>
-      <div className="row centered">
-        <div className={`ui ${inputState} search`}>
-          <div className="ui icon input">
-            <input
-              className="prompt"
-              type="text"
-              placeholder="Search Wikipedia..."
-              value={term}
-              onChange={(e) => setTerm(e.target.value)}
-              style={{ borderRadius: "20px" }}
-            />
-            <i className="search icon"></i>
-          </div>
-        </div>
+    <div className="ui grid">
+      <div className="row">
+        <SearchBar
+          placeHolder="Search wikipedia"
+          setTerm={setTerm}
+          inputState={inputState}
+          term={term}
+        />
       </div>
       <div className="row">
         <div className="ui celled list">{resultContent}</div>
       </div>
-    </React.Fragment>
+    </div>
   );
   return content;
 };

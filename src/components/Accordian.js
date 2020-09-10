@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Accordian = (props) => {
+const Accordian = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const onClick = (index) => {
@@ -8,7 +8,7 @@ const Accordian = (props) => {
     setActiveIndex(active);
   };
 
-  const items = props.items.map(({ title, content }, index) => {
+  const accordianItems = items.map(({ title, content }, index) => {
     const active = index === activeIndex ? "active" : "";
 
     return (
@@ -33,7 +33,7 @@ const Accordian = (props) => {
       </div>
     );
   });
-  return <div className="ui styled fluid accordion">{items}</div>;
+  return <div className="ui styled fluid accordion">{accordianItems}</div>;
 };
 
 export default Accordian;

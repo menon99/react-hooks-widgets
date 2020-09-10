@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Accordian from "./Accordian";
 import Search from "./Search";
 import Dropdown from "./Dropdown";
+import Translate from "./Translate";
+import Header from "./Header";
+import Route from "./Route";
 
 const items = [
   {
@@ -35,35 +38,31 @@ const colorOptions = [
 
 const App = () => {
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
+  console.log(window.location.pathname);
 
   return (
-    <div className="ui grid container" style={{ margin: "10px" }}>
-      <div className="row centered">
-        <h1
-          className="ui header"
-          style={{
-            alignContent: "center",
-            textAlign: "center",
-            color: "blueviolet",
-            margin: "10px",
-          }}
-        >
-          Hello World!
-        </h1>
-      </div>
-      <div className="row">
+    <div className="ui container">
+      <Header />
+      <Route path="/">
         <Accordian items={items} />
-      </div>
-      <Search />
-      <Dropdown
-        selected={selectedColor}
-        onSelectedChange={setSelectedColor}
-        options={colorOptions}
-        placeHolder="Select a color"
-      />
-      <h3 className="ui header" style={{ color: `${selectedColor.value}` }}>
-        Hello world
-      </h3>
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
+      <Route path="/wikipedia">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown
+          selected={selectedColor}
+          onSelectedChange={setSelectedColor}
+          options={colorOptions}
+          placeHolder="Select a color"
+        />
+        <h3 className="ui header" style={{ color: `${selectedColor.value}` }}>
+          Hello world
+        </h3>
+      </Route>
     </div>
   );
 };
